@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhinav Sai — B.Tech CSE | AI &amp; ML Developer</title>
+  <meta name="description" content="Portfolio of Abhinav Sai Madapati — B.Tech CSE student at VIT-AP University, exploring AI/ML, software development, and creative problem-solving.">
+  <meta name="theme-color" content="#0c0c0c">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Abhinav Sai — B.Tech CSE | AI & ML Developer">
+  <meta property="og:description" content="B.Tech CSE student building intelligent software solutions.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon (SVG inline) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%230c0c0c%22 width=%22100%22 height=%22100%22 rx=%2220%22/><text x=%2250%22 y=%2268%22 font-family=%22sans-serif%22 font-size=%2240%22 font-weight=%22700%22 fill=%22%23C8A97E%22 text-anchor=%22middle%22>AS</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==================== PRELOADER ==================== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__content">
+      <div class="preloader__counter">
+        <span class="preloader__number" id="preloader-number">0</span>
+        <span class="preloader__percent">%</span>
+      </div>
+      <div class="preloader__bar">
+        <div class="preloader__bar-fill" id="preloader-bar"></div>
+      </div>
+      <span class="preloader__tagline">Loading Experience</span>
+    </div>
+  </div>
+
+  <!-- ==================== CUSTOM CURSOR ==================== -->
+  <div class="cursor" id="cursor">
+    <div class="cursor__circle"></div>
+    <span class="cursor__label"></span>
+  </div>
+  <div class="cursor-dot" id="cursor-dot"></div>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__logo" data-magnetic>
+        <span>AS</span>
+      </a>
+      <nav class="nav__links" aria-label="Main navigation">
+        <a href="#about" class="nav__link" data-magnetic>About</a>
+        <a href="#work" class="nav__link" data-magnetic>Projects</a>
+        <a href="#services" class="nav__link" data-magnetic>Skills</a>
+        <a href="#education" class="nav__link" data-magnetic>Journey</a>
+        <a href="#contact" class="nav__link nav__link--cta" data-magnetic>Let's Connect</a>
+      </nav>
+      <button class="nav__hamburger" id="nav-hamburger" aria-label="Toggle navigation menu" data-magnetic>
+        <div class="nav__hamburger-lines">
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== MOBILE MENU OVERLAY ==================== -->
+  <div class="menu-overlay" id="menu-overlay">
+    <nav class="menu-overlay__nav" aria-label="Mobile navigation">
+      <a href="#about" class="menu-overlay__link"><span>About</span></a>
+      <a href="#work" class="menu-overlay__link"><span>Projects</span></a>
+      <a href="#services" class="menu-overlay__link"><span>Skills</span></a>
+      <a href="#education" class="menu-overlay__link"><span>Journey</span></a>
+      <a href="#contact" class="menu-overlay__link"><span>Contact</span></a>
+    </nav>
+    <div class="menu-overlay__footer">
+      <a href="https://github.com/abhinavsai2006" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/madapatiabhinav-sai" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main>
+
+    <!-- ======= HERO ======= -->
+    <section class="hero" id="hero">
+      <canvas class="hero__canvas" id="hero-canvas"></canvas>
+      <div class="hero__content">
+        <div class="hero__label">
+          <span data-animation="fade-up">B.Tech CSE &middot; AI &amp; ML &middot; VIT-AP University</span>
+        </div>
+        <h1 class="hero__title">
+          <div class="hero__title-line" data-animation="reveal">
+            <span>Abhinav</span>
+          </div>
+          <div class="hero__title-line" data-animation="reveal">
+            <span>Sai <em>Madapati</em></span>
+          </div>
+        </h1>
+        <p class="hero__subtitle" data-animation="fade-up">
+          CSE student passionate about building intelligent software,<br class="hide-mobile">
+          creative problem-solving, and pushing the boundaries of AI.
+        </p>
+        <div class="hero__actions" data-animation="fade-up">
+          <a href="assets/Abhinav_Sai_Resume.pdf" download class="btn btn--primary" data-magnetic>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v9M4 8l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 13h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>Download Resume</span>
+          </a>
+          <a href="#work" class="btn btn--outline btn--sm" data-magnetic>
+            <span>View Projects</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero__footer">
+        <div class="hero__meta" data-animation="fade-up">
+          <span class="hero__meta-label">Location</span>
+          <span>Amaravati, Andhra Pradesh</span>
+        </div>
+        <div class="hero__scroll" data-animation="fade-up">
+          <div class="hero__scroll-line"></div>
+          <span>Scroll to explore</span>
+        </div>
+        <div class="hero__meta hero__meta--right" data-animation="fade-up">
+          <span class="hero__meta-label">Status</span>
+          <span><i class="status-dot"></i>Open for internships &amp; collabs</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= MARQUEE ======= -->
+    <section class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <div class="marquee__content">
+          <span>Python</span>
+          <span class="marquee__dot">&#9670;</span>
+          <span>Java</span>
+          <span class="marquee__dot">&#9670;</span>
+          <span>AI / Machine Learning</span>
+          <span class="marquee__dot">&#9670;</span>
+          <span>Web Development</span>
+          <span class="marquee__dot">&#9670;</span>
+          <span>Data Analytics</span>
+          <span class="marquee__dot">&#9670;</span>
+          <span>Problem Solving</span>
+          <span class="marquee__dot">&#9670;</span>
+          <span>Oracle Cloud</span>
+          <span class="marquee__dot">&#9670;</span>
+          <span>TypeScript</span>
+          <span class="marquee__dot">&#9670;</span>
+          <span>React</span>
+          <span class="marquee__dot">&#9670;</span>
+          <span>TensorFlow</span>
+          <span class="marquee__dot">&#9670;</span>
+        </div>
+        <div class="marquee__content">
+          <span>Python</span>
+          <span class="marquee__dot">&#9670;</span>
+          <span>Java</span>
+          <span class="marquee__dot">&#9670;</span>
+          <span>AI / Machine Learning</span>
+          <span class="marquee__dot">&#9670;</span>
+          <span>Web Development</span>
+          <span class="marquee__dot">&#9670;</span>
+          <span>Data Analytics</span>
+          <span class="marquee__dot">&#9670;</span>
+          <span>Problem Solving</span>
+          <span class="marquee__dot">&#9670;</span>
+          <span>Oracle Cloud</span>
+          <span class="marquee__dot">&#9670;</span>
+          <span>TypeScript</span>
+          <span class="marquee__dot">&#9670;</span>
+          <span>React</span>
+          <span class="marquee__dot">&#9670;</span>
+          <span>TensorFlow</span>
+          <span class="marquee__dot">&#9670;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= ABOUT ======= -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-index" data-animation="fade-up">01</span>
+          <span class="section-label" data-animation="fade-up">About Me</span>
+        </div>
+        <div class="about__grid">
+          <div class="about__col-text">
+            <h2 class="about__headline" data-animation="fade-up">
+              A curious mind turning ideas into code and code into impact.
+            </h2>
+            <div class="about__body" data-animation="fade-up">
+              <p>
+                I'm a Computer Science &amp; Engineering student at VIT-AP University, specializing in AI &amp; Machine Learning. With 50+ GitHub repositories spanning Python, TypeScript, and JavaScript — from neural network classifiers to full-stack platforms — I ship code that solves real problems.
+              </p>
+              <p>
+                AI/ML Team Member at Google Developer Groups (VIT-AP). Oracle Cloud &amp; AI Foundations certified. Building systems like Quallium AI, EduVision-X, Legal Guard, and student platforms that push what's possible. Always open to collaborations.
+              </p>
+            </div>
+          </div>
+          <div class="about__col-image" data-animation="fade-up">
+            <div class="about__portrait">
+              <div class="about__portrait-inner">
+                <!-- Replace with your actual image: <img src="assets/portrait.jpg" alt="Portrait"> -->
+                <div class="about__portrait-placeholder">
+                  <span>Your Photo</span>
+                  <small>Replace with your image</small>
+                </div>
+              </div>
+              <div class="about__portrait-accent"></div>
+            </div>
+          </div>
+        </div>
+        <div class="about__stats">
+          <div class="stat" data-animation="fade-up">
+            <div class="stat__value">
+              <span class="stat__number" data-count="50">0</span><span class="stat__suffix">+</span>
+            </div>
+            <span class="stat__label">GitHub Repos</span>
+          </div>
+          <div class="stat" data-animation="fade-up">
+            <div class="stat__value">
+              <span class="stat__number" data-count="8">0</span>
+            </div>
+            <span class="stat__label">Certifications</span>
+          </div>
+          <div class="stat" data-animation="fade-up">
+            <div class="stat__value">
+              <span class="stat__number" data-count="3">0</span>
+            </div>
+            <span class="stat__label">Organizations</span>
+          </div>
+          <div class="stat" data-animation="fade-up">
+            <div class="stat__value">
+              <span class="stat__number" data-count="3">0</span>
+            </div>
+            <span class="stat__label">Languages Spoken</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= WORK / PROJECTS ======= -->
+    <section class="work" id="work">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-index" data-animation="fade-up">02</span>
+          <span class="section-label" data-animation="fade-up">Featured Projects</span>
+        </div>
+        <h2 class="work__headline" data-animation="fade-up">
+          Things I've<br>built &amp; shipped
+        </h2>
+        <div class="work__list">
+          <a href="https://github.com/abhinavsai2006/Quallium-Ai" target="_blank" rel="noopener" class="work__item" data-animation="fade-up" data-cursor-label="View">
+            <span class="work__item-index">01</span>
+            <div class="work__item-details">
+              <h3 class="work__item-title">Quallium AI</h3>
+              <span class="work__item-tags">AI Platform &middot; CSS &middot; MIT License</span>
+            </div>
+            <span class="work__item-year">2026</span>
+            <div class="work__item-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </a>
+          <a href="https://github.com/abhinavsai2006/EduVision-X" target="_blank" rel="noopener" class="work__item" data-animation="fade-up" data-cursor-label="View">
+            <span class="work__item-index">02</span>
+            <div class="work__item-details">
+              <h3 class="work__item-title">EduVision-X</h3>
+              <span class="work__item-tags">Education Tech &middot; TypeScript &middot; &#9733; 1</span>
+            </div>
+            <span class="work__item-year">2026</span>
+            <div class="work__item-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </a>
+          <a href="https://github.com/abhinavsai2006/Code-vision" target="_blank" rel="noopener" class="work__item" data-animation="fade-up" data-cursor-label="View">
+            <span class="work__item-index">03</span>
+            <div class="work__item-details">
+              <h3 class="work__item-title">Code Vision</h3>
+              <span class="work__item-tags">Developer Tool &middot; JavaScript</span>
+            </div>
+            <span class="work__item-year">2026</span>
+            <div class="work__item-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </a>
+          <a href="https://github.com/abhinavsai2006/Sentiment-Analysis" target="_blank" rel="noopener" class="work__item" data-animation="fade-up" data-cursor-label="View">
+            <span class="work__item-index">04</span>
+            <div class="work__item-details">
+              <h3 class="work__item-title">Sentiment Analysis</h3>
+              <span class="work__item-tags">NLP &middot; Python &middot; Machine Learning</span>
+            </div>
+            <span class="work__item-year">2026</span>
+            <div class="work__item-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </a>
+          <a href="https://github.com/abhinavsai2006/LaundryHub" target="_blank" rel="noopener" class="work__item" data-animation="fade-up" data-cursor-label="View">
+            <span class="work__item-index">05</span>
+            <div class="work__item-details">
+              <h3 class="work__item-title">LaundryHub</h3>
+              <span class="work__item-tags">Full Stack App &middot; TypeScript</span>
+            </div>
+            <span class="work__item-year">2025</span>
+            <div class="work__item-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </a>
+          <a href="https://github.com/abhinavsai2006/CricketConnect-Pro" target="_blank" rel="noopener" class="work__item" data-animation="fade-up" data-cursor-label="View">
+            <span class="work__item-index">06</span>
+            <div class="work__item-details">
+              <h3 class="work__item-title">CricketConnect Pro</h3>
+              <span class="work__item-tags">Sports Platform &middot; TypeScript &middot; MIT</span>
+            </div>
+            <span class="work__item-year">2025</span>
+            <div class="work__item-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </a>
+          <a href="https://github.com/abhinavsai2006/ultimate-career-ai" target="_blank" rel="noopener" class="work__item" data-animation="fade-up" data-cursor-label="View">
+            <span class="work__item-index">07</span>
+            <div class="work__item-details">
+              <h3 class="work__item-title">Ultimate Career AI</h3>
+              <span class="work__item-tags">AI Career Advisor &middot; JavaScript</span>
+            </div>
+            <span class="work__item-year">2025</span>
+            <div class="work__item-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </a>
+        </div>
+        <div class="work__cta" data-animation="fade-up">
+          <a href="https://github.com/abhinavsai2006" target="_blank" rel="noopener" class="btn btn--outline" data-magnetic>
+            <span>View all 50+ repos on GitHub</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= SKILLS ======= -->
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-index" data-animation="fade-up">03</span>
+          <span class="section-label" data-animation="fade-up">Skills &amp; Expertise</span>
+        </div>
+        <h2 class="services__headline" data-animation="fade-up">
+          What I bring<br>to the table
+        </h2>
+        <div class="services__grid">
+          <div class="service-card">
+            <div class="service-card__header">
+              <span class="service-card__index">01</span>
+              <div class="service-card__icon">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M10 24l6-8 6 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="11" r="5" stroke="currentColor" stroke-width="1.5"/></svg>
+              </div>
+            </div>
+            <h3 class="service-card__title">AI &amp; Machine Learning</h3>
+            <p class="service-card__desc">Building real AI systems — sentiment analysis, sign language CNNs, image classifiers, movie recommenders. Oracle Certified AI Foundations Associate.</p>
+            <div class="service-card__tags">
+              <span>TensorFlow</span>
+              <span>MediaPipe</span>
+              <span>LSTM</span>
+              <span>Computer Vision</span>
+              <span>NLP</span>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-card__header">
+              <span class="service-card__index">02</span>
+              <div class="service-card__icon">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M12 20l-4-4 4-4M20 12l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 8l-2 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+            </div>
+            <h3 class="service-card__title">Programming &amp; Backend</h3>
+            <p class="service-card__desc">50+ repos and counting. Python, Java, TypeScript — from terminal-based AI agents to full-stack platforms. Clean logic, efficient algorithms.</p>
+            <div class="service-card__tags">
+              <span>Python</span>
+              <span>Java</span>
+              <span>TypeScript</span>
+              <span>Node.js</span>
+              <span>DSA</span>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-card__header">
+              <span class="service-card__index">03</span>
+              <div class="service-card__icon">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="6" y="6" width="20" height="20" rx="4" stroke="currentColor" stroke-width="1.5"/><path d="M6 14h20" stroke="currentColor" stroke-width="1.5"/><circle cx="11" cy="10" r="1.5" fill="currentColor"/><circle cx="16" cy="10" r="1.5" fill="currentColor"/></svg>
+              </div>
+            </div>
+            <h3 class="service-card__title">Web &amp; Full Stack</h3>
+            <p class="service-card__desc">From Grocery App to LaundryHub to CricketConnect Pro — shipping real products with modern web technologies and immersive 3D experiences.</p>
+            <div class="service-card__tags">
+              <span>React / Next.js</span>
+              <span>JavaScript</span>
+              <span>Three.js</span>
+              <span>CSS</span>
+              <span>GSAP</span>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-card__header">
+              <span class="service-card__index">04</span>
+              <div class="service-card__icon">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 6l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              </div>
+            </div>
+            <h3 class="service-card__title">Cloud &amp; Leadership</h3>
+            <p class="service-card__desc">Oracle Cloud certified. GDG AI/ML team. IEEE member. Sanskriti event management. Leading, learning, and building community.</p>
+            <div class="service-card__tags">
+              <span>Oracle Cloud</span>
+              <span>GDG VIT-AP</span>
+              <span>IEEE</span>
+              <span>Event Mgmt</span>
+              <span>Git / GitHub</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= EDUCATION & JOURNEY ======= -->
+    <section class="work" id="education" style="padding-top: 0;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-index" data-animation="fade-up">04</span>
+          <span class="section-label" data-animation="fade-up">Education &amp; Journey</span>
+        </div>
+        <h2 class="work__headline" data-animation="fade-up">
+          Where I've<br>been learning
+        </h2>
+        <div class="work__list">
+          <div class="work__item" data-animation="fade-up">
+            <span class="work__item-index">01</span>
+            <div class="work__item-details">
+              <h3 class="work__item-title">VIT-AP University</h3>
+              <span class="work__item-tags">B.Tech CSE &middot; AI &amp; ML Specialization</span>
+            </div>
+            <span class="work__item-year">2024 — 2028</span>
+            <div class="work__item-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="work__item" data-animation="fade-up">
+            <span class="work__item-index">02</span>
+            <div class="work__item-details">
+              <h3 class="work__item-title">Narayana Junior College</h3>
+              <span class="work__item-tags">Intermediate &middot; MPC</span>
+            </div>
+            <span class="work__item-year">2022 — 2024</span>
+            <div class="work__item-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="work__item" data-animation="fade-up">
+            <span class="work__item-index">03</span>
+            <div class="work__item-details">
+              <h3 class="work__item-title">Sri Chaitanya Techno School</h3>
+              <span class="work__item-tags">10th Standard &middot; Secondary Education</span>
+            </div>
+            <span class="work__item-year">2019 — 2020</span>
+            <div class="work__item-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= CERTIFICATIONS ======= -->
+    <section class="creds" id="certifications">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-index" data-animation="fade-up">05</span>
+          <span class="section-label" data-animation="fade-up">Certifications</span>
+        </div>
+        <div class="creds__top-row" data-animation="fade-up">
+          <h2 class="creds__headline">
+            Validated<br>&amp; verified
+          </h2>
+          <p class="creds__count"><span class="creds__count-num">08</span> Credentials</p>
+        </div>
+      </div>
+
+      <!-- Horizontal scroll gallery — breaks out of container -->
+      <div class="creds__track" data-animation="fade-up">
+        <div class="creds__scroll">
+
+          <a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=D8C5089FE4738285C2F9F12B7B5CE310F8EF26F22BE706A0BC558A6F0FDC3234" target="_blank" rel="noopener noreferrer" class="cred-card cred-card--featured">
+            <div class="cred-card__accent"></div>
+            <span class="cred-card__mono">O</span>
+            <div class="cred-card__content">
+              <span class="cred-card__org">Oracle</span>
+              <h3 class="cred-card__title">Oracle Cloud Infrastructure 2025 &mdash; Certified AI Foundations Associate</h3>
+              <span class="cred-card__tag">AI &middot; Cloud</span>
+            </div>
+            <div class="cred-card__foot">
+              <span class="cred-card__date">Sep 2025</span>
+              <span class="cred-card__link">Verify &nearr;</span>
+            </div>
+          </a>
+
+          <a href="https://www.coursera.org/account/accomplishments/verify/ULJNLL66445Z" target="_blank" rel="noopener noreferrer" class="cred-card">
+            <div class="cred-card__accent"></div>
+            <span class="cred-card__mono">P</span>
+            <div class="cred-card__content">
+              <span class="cred-card__org">University of Pennsylvania</span>
+              <h3 class="cred-card__title">Introduction to Python Programming</h3>
+              <span class="cred-card__tag">Python</span>
+            </div>
+            <div class="cred-card__foot">
+              <span class="cred-card__date">Jan 2026</span>
+              <span class="cred-card__link">Verify &nearr;</span>
+            </div>
+          </a>
+
+          <a href="https://credsverse.com/credentials/04cb2d7c-8c45-4686-8751-56b1827dad90" target="_blank" rel="noopener noreferrer" class="cred-card">
+            <div class="cred-card__accent"></div>
+            <span class="cred-card__mono">G</span>
+            <div class="cred-card__content">
+              <span class="cred-card__org">Google Developers Group</span>
+              <h3 class="cred-card__title">TechSprint</h3>
+              <span class="cred-card__tag">Hackathon</span>
+            </div>
+            <div class="cred-card__foot">
+              <span class="cred-card__date">Jan 2026</span>
+              <span class="cred-card__link">Verify &nearr;</span>
+            </div>
+          </a>
+
+          <a href="https://www.coursera.org/account/accomplishments/verify/752AZKHZUYEJ" target="_blank" rel="noopener noreferrer" class="cred-card">
+            <div class="cred-card__accent"></div>
+            <span class="cred-card__mono">G</span>
+            <div class="cred-card__content">
+              <span class="cred-card__org">Google</span>
+              <h3 class="cred-card__title">Foundations of Project Management</h3>
+              <span class="cred-card__tag">Management</span>
+            </div>
+            <div class="cred-card__foot">
+              <span class="cred-card__date">Aug 2025</span>
+              <span class="cred-card__link">Verify &nearr;</span>
+            </div>
+          </a>
+
+          <a href="https://www.coursera.org/account/accomplishments/verify/VWU5SSNKXJ5A" target="_blank" rel="noopener noreferrer" class="cred-card">
+            <div class="cred-card__accent"></div>
+            <span class="cred-card__mono">J</span>
+            <div class="cred-card__content">
+              <span class="cred-card__org">Board Infinity</span>
+              <h3 class="cred-card__title">Fundamentals of Java Programming</h3>
+              <span class="cred-card__tag">Java</span>
+            </div>
+            <div class="cred-card__foot">
+              <span class="cred-card__date">Aug 2025</span>
+              <span class="cred-card__link">Verify &nearr;</span>
+            </div>
+          </a>
+
+          <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_jbSxScY2PuRvTLye4_1752737253245_completion_certificate.pdf" target="_blank" rel="noopener noreferrer" class="cred-card">
+            <div class="cred-card__accent"></div>
+            <span class="cred-card__mono">D</span>
+            <div class="cred-card__content">
+              <span class="cred-card__org">Deloitte &middot; Forage</span>
+              <h3 class="cred-card__title">Data Analytics Job Simulation</h3>
+              <span class="cred-card__tag">Data Analytics</span>
+            </div>
+            <div class="cred-card__foot">
+              <span class="cred-card__date">Jul 2025</span>
+              <span class="cred-card__link">Verify &nearr;</span>
+            </div>
+          </a>
+
+          <a href="https://matlabacademy.mathworks.com/progress/share/certificate.html?id=dc9d1b4e-4d0f-421a-9b4e-45918be8e320&" target="_blank" rel="noopener noreferrer" class="cred-card">
+            <div class="cred-card__accent"></div>
+            <span class="cred-card__mono">M</span>
+            <div class="cred-card__content">
+              <span class="cred-card__org">MathWorks</span>
+              <h3 class="cred-card__title">Matlab Onramp</h3>
+              <span class="cred-card__tag">MATLAB</span>
+            </div>
+            <div class="cred-card__foot">
+              <span class="cred-card__date">May 2025</span>
+              <span class="cred-card__link">Verify &nearr;</span>
+            </div>
+          </a>
+
+          <a href="https://www.udemy.com/certificate/UC-64c6623b-1d52-4ec6-b4cd-f2dd0e0dac4e/" target="_blank" rel="noopener noreferrer" class="cred-card">
+            <div class="cred-card__accent"></div>
+            <span class="cred-card__mono">C</span>
+            <div class="cred-card__content">
+              <span class="cred-card__org">Udemy</span>
+              <h3 class="cred-card__title">C Programming For Absolute Beginners</h3>
+              <span class="cred-card__tag">C</span>
+            </div>
+            <div class="cred-card__foot">
+              <span class="cred-card__date">Apr 2025</span>
+              <span class="cred-card__link">Verify &nearr;</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="creds__footer" data-animation="fade-up">
+          <span class="creds__drag-hint">Scroll to explore &darr;</span>
+          <a href="https://www.linkedin.com/in/madapati-abhinav-sai/" target="_blank" rel="noopener noreferrer" class="creds__linkedin">
+            View all on LinkedIn
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M6 14L14 6M14 6H6M14 6V14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= ACHIEVEMENTS ======= -->
+    <section class="achievements" id="achievements">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-index" data-animation="fade-up">06</span>
+          <span class="section-label" data-animation="fade-up">Achievements</span>
+        </div>
+        <h2 class="achievements__headline" data-animation="fade-up">
+          Milestones<br>&amp; highlights
+        </h2>
+        <div class="achievements__bento">
+
+          <div class="ach" data-animation="fade-up">
+            <div class="ach__bar"></div>
+            <div class="ach__body">
+              <span class="ach__idx">01</span>
+              <h3 class="ach__title">Oracle AI Certified</h3>
+              <p class="ach__desc">Oracle Cloud Infrastructure 2025 &mdash; AI Foundations Associate. Validated expertise in AI services, machine learning, and cloud architecture.</p>
+            </div>
+          </div>
+
+          <div class="ach" data-animation="fade-up">
+            <div class="ach__bar"></div>
+            <div class="ach__body">
+              <span class="ach__idx">02</span>
+              <h3 class="ach__title">50+ Open Source Repos</h3>
+              <p class="ach__desc">Built and shipped 50+ public repositories spanning AI platforms, full-stack apps, developer tools, and mobile experiences.</p>
+            </div>
+          </div>
+
+          <div class="ach" data-animation="fade-up">
+            <div class="ach__bar"></div>
+            <div class="ach__body">
+              <span class="ach__idx">03</span>
+              <h3 class="ach__title">GDG AI/ML Team</h3>
+              <p class="ach__desc">Selected as AI/ML team member at Google Developer Groups, VIT-AP University chapter.</p>
+            </div>
+          </div>
+
+          <div class="ach" data-animation="fade-up">
+            <div class="ach__bar"></div>
+            <div class="ach__body">
+              <span class="ach__idx">04</span>
+              <h3 class="ach__title">Google TechSprint</h3>
+              <p class="ach__desc">Participated in the GDG TechSprint hackathon — competitive prototyping under time pressure.</p>
+            </div>
+          </div>
+
+          <div class="ach" data-animation="fade-up">
+            <div class="ach__bar"></div>
+            <div class="ach__body">
+              <span class="ach__idx">05</span>
+              <h3 class="ach__title">Deloitte Data Analytics</h3>
+              <p class="ach__desc">Completed Deloitte Australia's Data Analytics virtual job simulation on Forage.</p>
+            </div>
+          </div>
+
+          <div class="ach" data-animation="fade-up">
+            <div class="ach__bar"></div>
+            <div class="ach__body">
+              <span class="ach__idx">06</span>
+              <h3 class="ach__title">8 Professional Certifications</h3>
+              <p class="ach__desc">Oracle, Google, UPenn, MathWorks, Board Infinity, Deloitte, and Udemy &mdash; continuous learning across AI, cloud, and engineering.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= BLOG / INSIGHTS ======= -->
+    <section class="blog" id="blog">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-index" data-animation="fade-up">07</span>
+          <span class="section-label" data-animation="fade-up">Insights / Blog</span>
+        </div>
+        <h2 class="blog__headline" data-animation="fade-up">
+          Thoughts &amp;<br>learnings
+        </h2>
+        <div class="blog__list">
+
+          <article class="blog-row" data-animation="fade-up">
+            <span class="blog-row__idx">01</span>
+            <div class="blog-row__content">
+              <div class="blog-row__meta">
+                <span class="blog-row__tag">AI</span>
+                <span class="blog-row__status">Coming Soon</span>
+              </div>
+              <h3 class="blog-row__title">How I Built Quallium AI</h3>
+              <p class="blog-row__excerpt">From idea to deployment &mdash; the architecture decisions, AI model selection, and system design behind the Quallium AI platform.</p>
+            </div>
+            <div class="blog-row__arrow">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 14L14 6M14 6H6M14 6V14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </article>
+
+          <article class="blog-row" data-animation="fade-up">
+            <span class="blog-row__idx">02</span>
+            <div class="blog-row__content">
+              <div class="blog-row__meta">
+                <span class="blog-row__tag">Student Life</span>
+                <span class="blog-row__status">Coming Soon</span>
+              </div>
+              <h3 class="blog-row__title">Building AI Projects as a Student</h3>
+              <p class="blog-row__excerpt">Lessons learned from shipping 50+ projects while balancing academics at VIT-AP University &mdash; tools, habits, and mindset.</p>
+            </div>
+            <div class="blog-row__arrow">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 14L14 6M14 6H6M14 6V14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </article>
+
+          <article class="blog-row" data-animation="fade-up">
+            <span class="blog-row__idx">03</span>
+            <div class="blog-row__content">
+              <div class="blog-row__meta">
+                <span class="blog-row__tag">Mobile Dev</span>
+                <span class="blog-row__status">Coming Soon</span>
+              </div>
+              <h3 class="blog-row__title">React Native Productivity App</h3>
+              <p class="blog-row__excerpt">Designing and building a mobile-first productivity tool with React Native, Expo, and a focus on clean UX.</p>
+            </div>
+            <div class="blog-row__arrow">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 14L14 6M14 6H6M14 6V14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= INTERACTIVE TERMINAL ======= -->
+    <section class="terminal-section" id="terminal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-index" data-animation="fade-up">08</span>
+          <span class="section-label" data-animation="fade-up">Interactive Terminal</span>
+        </div>
+        <h2 class="terminal__headline" data-animation="fade-up">
+          Ask me<br>anything
+        </h2>
+        <div class="terminal" data-animation="fade-up">
+          <div class="terminal__header">
+            <span class="terminal__dot terminal__dot--red"></span>
+            <span class="terminal__dot terminal__dot--yellow"></span>
+            <span class="terminal__dot terminal__dot--green"></span>
+            <span class="terminal__title">abhinav@portfolio ~ %</span>
+          </div>
+          <div class="terminal__body" id="terminal-body">
+            <div class="terminal__line">
+              <span class="terminal__prompt">$</span>
+              <span class="terminal__text">Welcome! Type <strong>help</strong> to see available commands.</span>
+            </div>
+          </div>
+          <div class="terminal__input-row">
+            <span class="terminal__prompt">$</span>
+            <input type="text" class="terminal__input" id="terminal-input" placeholder="Type a command..." autocomplete="off" spellcheck="false">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= CONTACT ======= -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-index" data-animation="fade-up">09</span>
+          <span class="section-label" data-animation="fade-up">Get in Touch</span>
+        </div>
+        <h2 class="contact__headline" data-animation="fade-up">
+          Let's build something<br><em>amazing</em> together
+        </h2>
+        <p class="contact__subtext" data-animation="fade-up">
+          Looking for internships, collaborations, or just a chat about<br class="hide-mobile">
+          tech, AI, or cool project ideas &mdash; I'd love to connect.
+        </p>
+
+        <!-- Contact Form -->
+        <form class="contact-form" id="contact-form" data-animation="fade-up" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="contact-form__row">
+            <div class="contact-form__field">
+              <label for="cf-name">Name</label>
+              <input type="text" id="cf-name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="contact-form__field">
+              <label for="cf-email">Email</label>
+              <input type="email" id="cf-email" name="email" placeholder="you@email.com" required>
+            </div>
+          </div>
+          <div class="contact-form__field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="5" placeholder="Tell me about your idea..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary contact-form__submit" data-magnetic>
+            <span>Send Message</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <p class="contact-form__status" id="form-status"></p>
+        </form>
+
+        <div class="contact__divider">
+          <span>or reach out directly</span>
+        </div>
+
+        <div class="contact__cta" data-animation="fade-up">
+          <a href="mailto:abhinavsaimadapati@gmail.com" class="contact__email" data-magnetic>
+            <span>abhinavsaimadapati@gmail.com</span>
+          </a>
+        </div>
+        <div class="contact__socials" data-animation="fade-up">
+          <a href="https://github.com/abhinavsai2006" target="_blank" rel="noopener" class="contact__social-link" data-magnetic>GitHub</a>
+          <a href="https://www.linkedin.com/in/madapatiabhinav-sai" target="_blank" rel="noopener" class="contact__social-link" data-magnetic>LinkedIn</a>
+          <a href="https://abhinavsai2006.github.io/AbhinavSai-Portfiolo/" target="_blank" rel="noopener" class="contact__social-link" data-magnetic>Portfolio v1</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== AI CHATBOT ==================== -->
+  <div class="chatbot" id="chatbot">
+    <button class="chatbot__toggle" id="chatbot-toggle" aria-label="Open AI assistant">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="chatbot__badge">AI</span>
+    </button>
+    <div class="chatbot__window" id="chatbot-window">
+      <div class="chatbot__header">
+        <div>
+          <strong>Abhinav's AI Assistant</strong>
+          <small>Ask me about projects, skills, experience</small>
+        </div>
+        <button class="chatbot__close" id="chatbot-close" aria-label="Close chat">&times;</button>
+      </div>
+      <div class="chatbot__messages" id="chatbot-messages">
+        <div class="chatbot__msg chatbot__msg--bot">Hi! I'm Abhinav's AI assistant. Ask me about his projects, skills, or experience!</div>
+      </div>
+      <div class="chatbot__input-row">
+        <input type="text" class="chatbot__input" id="chatbot-input" placeholder="Ask me anything..." autocomplete="off">
+        <button class="chatbot__send" id="chatbot-send" aria-label="Send message">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M16 2L8 10M16 2L11 16l-3-6-6-3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <span class="footer__copy">&copy; 2026 Abhinav Sai Madapati &mdash; All rights reserved</span>
+        <span class="footer__credit">Designed &amp; Built with &#9829; from Amaravati</span>
+        <a href="#hero" class="footer__top" data-magnetic>
+          <span>Back to Top</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 13V1M7 1L1 7M7 1L13 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
