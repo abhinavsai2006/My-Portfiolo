@@ -1051,7 +1051,7 @@
       github: 'Abhinav has 50+ repositories on GitHub covering AI, web development, and developer tools. Check them out at github.com/abhinavsai2006',
       gdg: 'Abhinav is a member of the AI/ML & Data Analytics Team at Google Developer Groups (GDG), VIT-AP for 2025-2026.',
       cloud: 'He completed Gen AI Academy 2.0 by Google Cloud & Hack2Skill, mastering 5 tracks: Networking, DevOps, Data Engineering, Cloud Security, and AI/ML. He\'s also Oracle Cloud AI Foundations certified.',
-      linkedin: 'Abhinav has 677+ followers on LinkedIn. Find him at linkedin.com/in/madapati-abhinav-sai'
+      linkedin: 'Abhinav has 500+ followers on LinkedIn. Find him at linkedin.com/in/madapati-abhinav-sai'
     };
 
     function addMsg(text, type) {
