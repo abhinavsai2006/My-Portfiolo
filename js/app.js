@@ -138,10 +138,11 @@
     var renderer = new THREE.WebGLRenderer({
       canvas: canvas,
       alpha: true,
-      antialias: true,
+      antialias: !CONFIG.three.isMobile,
+      powerPreference: 'high-performance',
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
     var isMobile = window.innerWidth < 768;
 
@@ -457,6 +458,7 @@
     var mouse = { x: 0, y: 0 };
     var smoothMouse = { x: 0, y: 0 };
     var isHovering = false;
+    var heroVisible = true;
 
     window.addEventListener('mousemove', function (e) {
       mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
@@ -469,6 +471,14 @@
       heroEl.addEventListener('mouseleave', function () { isHovering = false; });
     }
 
+    // Track hero visibility for render throttling
+    if ('IntersectionObserver' in window) {
+      var heroObs = new IntersectionObserver(function (entries) {
+        heroVisible = entries[0].isIntersecting;
+      }, { threshold: 0 });
+      if (heroEl) heroObs.observe(heroEl);
+    }
+
     // Whole scene group for unified rotation
     var networkGroup = new THREE.Group();
     networkGroup.add(nodePoints);
@@ -478,6 +488,9 @@
 
     function animate() {
       requestAnimationFrame(animate);
+
+      // Skip rendering when hero is off-screen
+      if (!heroVisible) return;
 
       var time = performance.now() * 0.001;
       crystalUniforms.uTime.value = time;
@@ -506,23 +519,6 @@
         nPos[j + 2] = oz + pulse * 0.4;
       }
       nodeGeom.attributes.position.needsUpdate = true;
-
-      // Update connection lines to follow breathing nodes
-      var lp = lineGeom.attributes.position.array;
-      var li = 0;
-      for (var la = 0; la < nodeCount; la++) {
-        for (var lb = la + 1; lb < nodeCount; lb++) {
-          var ax = nPos[la * 3], ay = nPos[la * 3 + 1], az = nPos[la * 3 + 2];
-          var bx = nPos[lb * 3], by = nPos[lb * 3 + 1], bz = nPos[lb * 3 + 2];
-          var dx = ax - bx, dy = ay - by, dz = az - bz;
-          if (Math.sqrt(dx * dx + dy * dy + dz * dz) < connThreshold && li < lp.length) {
-            lp[li] = ax; lp[li + 1] = ay; lp[li + 2] = az;
-            lp[li + 3] = bx; lp[li + 4] = by; lp[li + 5] = bz;
-            li += 6;
-          }
-        }
-      }
-      lineGeom.attributes.position.needsUpdate = true;
 
       // Network rotates opposite to crystal — creates depth
       networkGroup.rotation.y = -time * 0.04 + smoothMouse.x * 0.12;
@@ -559,11 +555,15 @@
     animate();
 
     /* ===== RESIZE ===== */
+    var resizeTimer;
     window.addEventListener('resize', function () {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      }, 150);
     });
   }
 
@@ -830,11 +830,11 @@
         if (!target) return;
 
         e.preventDefault();
-        var offset = target.getBoundingClientRect().top + window.scrollY;
 
-        window.scrollTo({
-          top: offset,
-          behavior: 'smooth',
+        gsap.to(window, {
+          scrollTo: { y: target, offsetY: 80 },
+          duration: 1,
+          ease: 'power3.inOut',
         });
       });
     });
@@ -886,8 +886,8 @@
     var scroll = document.querySelector('.creds__scroll');
     if (!section || !track || !scroll) return;
 
-    // Let layout settle, then set up pinned horizontal scroll
-    requestAnimationFrame(function () {
+    // Delay to ensure DOM layout is fully settled
+    setTimeout(function () {
       var scrollWidth = scroll.scrollWidth;
       var viewWidth = track.offsetWidth;
       var distance = scrollWidth - viewWidth;
@@ -907,17 +907,16 @@
           end: '+=' + (distance + viewWidth * 0.2),
           pin: true,
           pinSpacing: true,
-          scrub: 0.8,
+          scrub: 0.6,
           anticipatePin: 1,
           invalidateOnRefresh: true,
+          refreshPriority: -1,
         },
       });
 
-      // Refresh positions for all sections below this pinned section
-      setTimeout(function () {
-        ScrollTrigger.refresh();
-      }, 200);
-    });
+      // Double-refresh to ensure all pinned spacing is correct
+      ScrollTrigger.refresh(true);
+    }, 300);
   }
 
   /* -----------------------------------------------------------------------
@@ -929,12 +928,14 @@
     if (!input || !body) return;
 
     var commands = {
-      help: 'Available commands: <strong>about</strong>, <strong>skills</strong>, <strong>projects</strong>, <strong>education</strong>, <strong>contact</strong>, <strong>clear</strong>',
-      about: 'Abhinav Sai Madapati — B.Tech CSE student at VIT-AP University, specializing in AI & ML. 50+ GitHub repos, Oracle certified, GDG AI/ML team.',
-      skills: 'Python, Java, TypeScript, JavaScript, React, Next.js, TensorFlow, Node.js, Three.js, GSAP, FastAPI, Docker, Git',
-      projects: '1. Quallium AI — AI platform\n2. EduVision-X — Education tech\n3. Code Vision — Dev tool\n4. Sentiment Analysis — NLP/ML\n5. LaundryHub — Full stack\n6. CricketConnect Pro — Sports',
+      help: 'Available commands: <strong>about</strong>, <strong>skills</strong>, <strong>projects</strong>, <strong>hackathons</strong>, <strong>achievements</strong>, <strong>education</strong>, <strong>contact</strong>, <strong>clear</strong>',
+      about: 'Abhinav Sai Madapati — B.Tech CSE student at VIT-AP University, specializing in AI & ML. Top Contributor (1st place) in the GDG Git & GitHub Open Source Challenge with 30 PRs, 2nd place in ElectroQuest (IETE), Oracle certified, and GDG AI/ML & Data Analytics team member (2025-2026).',
+      skills: 'Python, Java, TypeScript, JavaScript, React, Next.js, TensorFlow, Google Cloud, Firebase, Gemini API, Node.js, Three.js, GSAP, FastAPI, Docker, Git',
+      projects: '1. Quallium AI — AI platform\n2. EduVision-X — Education tech\n3. Code Vision — Dev tool\n4. Sentiment Analysis — NLP/ML\n5. CivicAI — AI Agent (Gemini API, Top 15/53)\n6. LaundryHub — QR-based Firebase app\n7. CricketConnect Pro — Sports\n8. Ultimate Career AI — Career Advisor',
+      hackathons: '1. HackAura VITaura\'25 — CivicAI, Top 15 of 53 teams\n2. TechSprint \'25 (GDG) — LaundryHub, Round 2 qualifier\n3. Radiothon Hackathon (CSI VIT-AP)\n4. Gen AI Exchange 2025 (Google Cloud)',
+      achievements: '1. 1st Place — Git & GitHub Open Source Challenge (GDG On Campus VIT-AP), Top Contributor with 30 PRs\n2. 2nd Place — ElectroQuest (IETE), ECE-focused technical event\n3. HackAura VITaura\'25 — Top 15 of 53 teams',
       education: 'VIT-AP University (2024-2028) — B.Tech CSE, AI & ML\nNarayana Junior College (2022-2024) — Intermediate MPC\nSri Chaitanya Techno School — 10th Standard',
-      contact: 'Email: abhinavsaimadapati@gmail.com\nGitHub: github.com/abhinavsai2006\nLinkedIn: linkedin.com/in/madapatiabhinav-sai',
+      contact: 'Email: abhinavsaimadapati@gmail.com\nGitHub: github.com/abhinavsai2006\nLinkedIn: linkedin.com/in/madapati-abhinav-sai',
     };
 
     function addLine(text, type) {
@@ -1032,17 +1033,25 @@
     }
 
     var knowledge = {
-      projects: 'Abhinav has built 50+ projects including: Quallium AI (AI platform), EduVision-X (education tech), Code Vision (developer tool), Sentiment Analysis (NLP/ML), LaundryHub (full stack), CricketConnect Pro (sports platform), and Ultimate Career AI.',
-      skills: 'His core skills include Python, Java, TypeScript, JavaScript, React, Next.js, TensorFlow, Node.js, Three.js, GSAP, and FastAPI. He specializes in AI & Machine Learning.',
+      projects: 'Abhinav has built 50+ projects including: Quallium AI (AI platform), EduVision-X (education tech), CivicAI (AI agent for city issue management using Gemini API — Top 15/53 at HackAura), Code Vision (developer tool), Sentiment Analysis (NLP/ML), LaundryHub (QR-based Firebase platform — TechSprint Round 2), CricketConnect Pro (sports platform), and Ultimate Career AI.',
+      skills: 'His core skills include Python, Java, TypeScript, JavaScript, React, Next.js, TensorFlow, Google Cloud, Firebase, Gemini API, Node.js, Three.js, GSAP, and FastAPI. He specializes in AI & Machine Learning.',
       education: 'He\'s pursuing B.Tech CSE with AI & ML specialization at VIT-AP University (2024-2028). Previously at Narayana Junior College (MPC) and Sri Chaitanya Techno School.',
-      experience: 'He\'s an AI/ML Team Member at Google Developer Groups (VIT-AP), IEEE member, and has participated in hackathons like Google TechSprint.',
-      contact: 'You can reach Abhinav at abhinavsaimadapati@gmail.com, on GitHub (abhinavsai2006), or LinkedIn (madapatiabhinav-sai).',
-      certifications: 'He holds certifications from Oracle (AI Foundations), Google (Project Management), UPenn (Python), MathWorks (MATLAB), Deloitte (Data Analytics), and more — 8 total.',
-      ai: 'Abhinav specializes in AI/ML — he\'s built sentiment analyzers, image classifiers, sign language CNNs, movie recommenders, and AI-powered platforms like Quallium AI.',
-      hello: 'Hey! I\'m Abhinav\'s AI assistant. Ask me about his projects, skills, education, or experience!',
-      hi: 'Hello! What would you like to know about Abhinav? Try asking about his projects, skills, or certifications.',
+      experience: 'He\'s an AI/ML & Data Analytics Team Member at Google Developer Groups VIT-AP (2025-2026). He was recognized as 1st place Top Contributor in the GDG Git & GitHub Open Source Challenge with 30 PRs, secured 2nd place in ElectroQuest (IETE), and placed Top 15/53 at HackAura building CivicAI.',
+      hackathon: 'Abhinav competed in 4 hackathons: HackAura VITaura\'25 (CivicAI, Top 15/53), TechSprint \'25 (LaundryHub, Round 2), Radiothon (CSI VIT-AP), and Gen AI Exchange 2025 (Google Cloud). His first hackathon was HackAura where he built an AI agentic pipeline.',
+      achievements: 'Recent highlights: 1st place in the Git & GitHub Open Source Challenge by GDG On Campus VIT-AP (Top Contributor with 30 PRs), 2nd place in ElectroQuest conducted by IETE, and Top 15/53 at HackAura VITaura\'25.',
+      electroquest: 'Abhinav secured 2nd place in ElectroQuest, an ECE-focused technical event conducted by IETE.',
+      opensource: 'He was recognized as the Top Contributor (1st place) in the Git & GitHub Open Source Challenge by GDG On Campus VIT-AP with 30 pull requests.',
+      "open source": 'He was recognized as the Top Contributor (1st place) in the Git & GitHub Open Source Challenge by GDG On Campus VIT-AP with 30 pull requests.',
+      contact: 'You can reach Abhinav at abhinavsaimadapati@gmail.com, on GitHub (abhinavsai2006), or LinkedIn (madapati-abhinav-sai).',
+      certifications: 'He holds 10+ certifications from Oracle (AI Foundations), Google (Project Management), UPenn (Python), Google Cloud (Gen AI Academy 2.0 — 5 tracks), MathWorks (MATLAB), Deloitte (Data Analytics), Wadhwani Foundation (Entrepreneurship), Board Infinity (Java), and more.',
+      ai: 'Abhinav specializes in AI/ML — he\'s built CivicAI (Gemini API agentic pipeline for smart cities), sentiment analyzers, image classifiers, and AI platforms like Quallium AI. He completed Gen AI Academy 2.0 and attended a Gen AI workshop at IIT Hyderabad.',
+      hello: 'Hey! I\'m Abhinav\'s AI assistant. Ask me about his projects, skills, hackathons, or experience!',
+      hi: 'Hello! What would you like to know about Abhinav? Try asking about his projects, hackathons, skills, or certifications.',
       resume: 'You can download Abhinav\'s resume from the hero section at the top of the page — look for the "Download Resume" button.',
-      github: 'Abhinav has 50+ repositories on GitHub covering AI, web development, and developer tools. Check them out at github.com/abhinavsai2006'
+      github: 'Abhinav has 50+ repositories on GitHub covering AI, web development, and developer tools. Check them out at github.com/abhinavsai2006',
+      gdg: 'Abhinav is a member of the AI/ML & Data Analytics Team at Google Developer Groups (GDG), VIT-AP for 2025-2026.',
+      cloud: 'He completed Gen AI Academy 2.0 by Google Cloud & Hack2Skill, mastering 5 tracks: Networking, DevOps, Data Engineering, Cloud Security, and AI/ML. He\'s also Oracle Cloud AI Foundations certified.',
+      linkedin: 'Abhinav has 677+ followers on LinkedIn. Find him at linkedin.com/in/madapati-abhinav-sai'
     };
 
     function addMsg(text, type) {
@@ -1106,11 +1115,13 @@
     // Start 3D scene immediately (behind preloader)
     initThreeScene();
 
-    // Start preloader, then trigger entrance
+    // Start preloader, then trigger entrance + all scroll logic
     initPreloader(function () {
       animateHeroEntrance();
       initScrollAnimations();
       initParallax();
+      // Init pinned scroll AFTER all other scroll triggers
+      initCredsScroll();
     });
 
     // These can init right away
@@ -1119,7 +1130,6 @@
     initMagnetic();
     initSmoothAnchors();
     initTerminal();
-    initCredsScroll();
     initContactForm();
     initChatbot();
     initLazyAnimations();

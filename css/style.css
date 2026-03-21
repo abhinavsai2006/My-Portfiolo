@@ -74,7 +74,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -578,6 +577,8 @@ em {
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
+  z-index: 1;
+  isolation: isolate;
 }
 
 .hero__canvas {
@@ -586,6 +587,7 @@ em {
   width: 100%;
   height: 100%;
   z-index: 0;
+  will-change: transform, opacity;
 }
 
 /* Vignette overlay for text contrast */
@@ -745,6 +747,8 @@ em {
    MARQUEE
    ========================================= */
 .marquee {
+  position: relative;
+  z-index: 2;
   border-top: 1px solid var(--c-border-light);
   border-bottom: 1px solid var(--c-border-light);
   padding: var(--space-sm) 0;
@@ -791,7 +795,10 @@ em {
    ABOUT
    ========================================= */
 .about {
+  position: relative;
+  z-index: 2;
   padding: var(--section-py) 0;
+  background: var(--c-bg);
 }
 
 .about__grid {
@@ -926,7 +933,10 @@ em {
    WORK
    ========================================= */
 .work {
+  position: relative;
+  z-index: 2;
   padding: var(--section-py) 0;
+  background: var(--c-bg);
 }
 
 .work__headline {
@@ -1088,7 +1098,10 @@ em {
    SERVICES
    ========================================= */
 .services {
+  position: relative;
+  z-index: 2;
   padding: var(--section-py) 0;
+  background: var(--c-bg);
 }
 
 .services__headline {
@@ -1201,6 +1214,71 @@ em {
   color: var(--c-text);
 }
 
+/* --- Skills Icons Grid --- */
+.skills-icons {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0;
+  margin-top: clamp(3rem, 6vw, 5rem);
+  border: 1px solid var(--c-border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--c-bg-elevated);
+}
+
+.skills-icons__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: clamp(1.2rem, 2.5vw, 2rem) 0.5rem;
+  border-right: 1px solid var(--c-border-light);
+  border-bottom: 1px solid var(--c-border-light);
+  transition: background 0.35s ease, transform 0.35s ease;
+  cursor: default;
+}
+
+.skills-icons__item:nth-child(8n) {
+  border-right: none;
+}
+
+.skills-icons__item:nth-last-child(-n+8) {
+  border-bottom: none;
+}
+
+.skills-icons__item img {
+  width: clamp(28px, 3.5vw, 44px);
+  height: clamp(28px, 3.5vw, 44px);
+  opacity: 0.55;
+  filter: grayscale(100%);
+  transition: opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+}
+
+.skills-icons__item span {
+  font-family: var(--f-label);
+  font-size: clamp(0.6rem, 0.85vw, 0.75rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  transition: color 0.35s ease;
+  text-align: center;
+}
+
+.skills-icons__item:hover {
+  background: rgba(200, 169, 126, 0.04);
+}
+
+.skills-icons__item:hover img {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: translateY(-2px) scale(1.1);
+}
+
+.skills-icons__item:hover span {
+  color: var(--c-accent);
+}
+
 /* =========================================
    TESTIMONIALS
    ========================================= */
@@ -1250,9 +1328,12 @@ em {
    CERTIFICATIONS — Horizontal Scroll Gallery
    ========================================= */
 .creds {
+  position: relative;
+  z-index: 2;
   padding: clamp(3rem, 6vh, 5rem) 0 clamp(2rem, 4vh, 3rem);
   border-top: 1px solid var(--c-border-light);
   overflow: hidden;
+  background: var(--c-bg);
 }
 
 .creds__top-row {
@@ -1293,7 +1374,7 @@ em {
 .creds__track {
   position: relative;
   margin-bottom: clamp(1rem, 2vh, 1.5rem);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .creds__scroll {
@@ -1506,8 +1587,11 @@ em {
    CONTACT
    ========================================= */
 .contact {
+  position: relative;
+  z-index: 2;
   padding: var(--section-py) 0;
   text-align: center;
+  background: var(--c-bg);
 }
 
 .contact .section-header {
@@ -1615,8 +1699,11 @@ em {
    FOOTER
    ========================================= */
 .footer {
+  position: relative;
+  z-index: 2;
   border-top: 1px solid var(--c-border-light);
   padding: var(--space-md) 0;
+  background: var(--c-bg);
 }
 
 .footer__inner {
@@ -1705,8 +1792,11 @@ em {
    ACHIEVEMENTS
    ========================================= */
 .achievements {
+  position: relative;
+  z-index: 2;
   padding: var(--section-py) 0;
   border-top: 1px solid var(--c-border-light);
+  background: var(--c-bg);
 }
 
 .achievements__headline {
@@ -1857,8 +1947,11 @@ em {
    BLOG / INSIGHTS — Editorial List
    ========================================= */
 .blog {
+  position: relative;
+  z-index: 2;
   padding: var(--section-py) 0;
   border-top: 1px solid var(--c-border-light);
+  background: var(--c-bg);
 }
 
 .blog__headline {
@@ -1980,8 +2073,11 @@ em {
    INTERACTIVE TERMINAL
    ========================================= */
 .terminal-section {
+  position: relative;
+  z-index: 2;
   padding: var(--section-py) 0;
   border-top: 1px solid var(--c-border-light);
+  background: var(--c-bg);
 }
 
 .terminal__headline {
@@ -2375,6 +2471,26 @@ em {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .skills-icons {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .skills-icons__item:nth-child(8n) {
+    border-right: 1px solid var(--c-border-light);
+  }
+
+  .skills-icons__item:nth-child(4n) {
+    border-right: none;
+  }
+
+  .skills-icons__item:nth-last-child(-n+8) {
+    border-bottom: 1px solid var(--c-border-light);
+  }
+
+  .skills-icons__item:nth-last-child(-n+4) {
+    border-bottom: none;
+  }
+
   .achievements__bento {
     grid-template-columns: 1fr 1fr;
   }
@@ -2458,6 +2574,10 @@ em {
 
   .services__grid {
     grid-template-columns: 1fr;
+  }
+
+  .skills-icons {
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .achievements__bento {
@@ -2559,8 +2679,10 @@ em {
   .service-card {
     padding: var(--space-md);
   }
+
+  .skills-icons {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 
-
-       
