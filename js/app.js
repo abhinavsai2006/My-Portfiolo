@@ -984,19 +984,24 @@
       var btn = form.querySelector('.contact-form__submit');
       btn.disabled = true;
       status.textContent = 'Sending...';
+      status.style.color = '';
 
-      fetch(form.action, {
+      var formData = new FormData(form);
+
+      fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' },
+        body: formData,
       })
         .then(function (res) {
-          if (res.ok) {
-            status.textContent = 'Message sent! I\'ll get back to you soon.';
+          return res.json();
+        })
+        .then(function (data) {
+          if (data.success) {
+            status.textContent = 'Message sent! I\'ll get back to you soon. ✓';
             status.style.color = '#27c93f';
             form.reset();
           } else {
-            status.textContent = 'Something went wrong. Try emailing me directly.';
+            status.textContent = 'Error: ' + (data.message || 'Something went wrong. Try emailing me directly.');
             status.style.color = '#ff5f56';
           }
           btn.disabled = false;
