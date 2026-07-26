@@ -347,6 +347,8 @@
         document.body.classList.remove('menu-open');
       });
     });
+  }
+
   // Initialize Custom Smooth Cursor
   function initCustomCursor() {
     if (window.matchMedia('(hover: none)').matches) return;
