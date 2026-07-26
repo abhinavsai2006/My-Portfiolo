@@ -802,6 +802,17 @@
           item.style.setProperty('--my', y + '%');
         });
       });
+
+      // Cursor-tracking spotlight on achievement cards
+      document.querySelectorAll('.ach').forEach(function (card) {
+        card.addEventListener('mousemove', function (e) {
+          var rect = card.getBoundingClientRect();
+          var x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+          var y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+          card.style.setProperty('--mx', x + '%');
+          card.style.setProperty('--my', y + '%');
+        });
+      });
     }
   }
 
