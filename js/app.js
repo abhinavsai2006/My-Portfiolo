@@ -755,22 +755,8 @@
 
         if (isMenuOpen) {
           nav.classList.remove('is-hidden');
-          gsap.from('.menu-overlay__link span', {
-            yPercent: 110,
-            opacity: 0,
-            stagger: 0.07,
-            duration: 0.85,
-            ease: 'power3.out',
-            delay: 0.2,
-          });
-          gsap.from('.menu-overlay__footer a', {
-            y: 20,
-            opacity: 0,
-            stagger: 0.05,
-            duration: 0.6,
-            ease: 'power3.out',
-            delay: 0.5,
-          });
+          // CSS stagger (translateX + opacity via nth-child) handles the entrance
+          // No GSAP needed here — avoids yPercent conflict with the CSS clip
         }
       });
 
@@ -781,6 +767,39 @@
           hamburger.classList.remove('is-active');
           overlay.classList.remove('is-open');
           document.body.classList.remove('menu-open');
+        });
+      });
+
+      // Cursor-tracking spotlight on each menu link row
+      overlay.querySelectorAll('.menu-overlay__link').forEach(function (link) {
+        link.addEventListener('mousemove', function (e) {
+          var rect = link.getBoundingClientRect();
+          var x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+          var y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+          link.style.setProperty('--mx', x + '%');
+          link.style.setProperty('--my', y + '%');
+        });
+      });
+
+      // Cursor-tracking spotlight on service cards
+      document.querySelectorAll('.service-card').forEach(function (card) {
+        card.addEventListener('mousemove', function (e) {
+          var rect = card.getBoundingClientRect();
+          var x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+          var y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+          card.style.setProperty('--mx', x + '%');
+          card.style.setProperty('--my', y + '%');
+        });
+      });
+
+      // Cursor-tracking spotlight on work/education items
+      document.querySelectorAll('.work__item').forEach(function (item) {
+        item.addEventListener('mousemove', function (e) {
+          var rect = item.getBoundingClientRect();
+          var x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+          var y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+          item.style.setProperty('--mx', x + '%');
+          item.style.setProperty('--my', y + '%');
         });
       });
     }
@@ -919,6 +938,7 @@
     }, 300);
   }
 
+
   /* -----------------------------------------------------------------------
      INTERACTIVE TERMINAL
      ----------------------------------------------------------------------- */
@@ -931,7 +951,7 @@
       help: 'Available commands: <strong>about</strong>, <strong>skills</strong>, <strong>projects</strong>, <strong>hackathons</strong>, <strong>achievements</strong>, <strong>education</strong>, <strong>contact</strong>, <strong>clear</strong>',
       about: 'Abhinav Sai Madapati — B.Tech CSE student at VIT-AP University, specializing in AI & ML. Top Contributor (1st place) in the GDG Git & GitHub Open Source Challenge with 30 PRs, 2nd place in ElectroQuest (IETE), Oracle certified, and GDG AI/ML & Data Analytics team member (2025-2026).',
       skills: 'Python, Java, TypeScript, JavaScript, React, Next.js, TensorFlow, Google Cloud, Firebase, Gemini API, Node.js, Three.js, GSAP, FastAPI, Docker, Git',
-      projects: '1. Quallium AI — AI platform\n2. EduVision-X — Education tech\n3. Code Vision — Dev tool\n4. Sentiment Analysis — NLP/ML\n5. CivicAI — AI Agent (Gemini API, Top 15/53)\n6. LaundryHub — QR-based Firebase app\n7. CricketConnect Pro — Sports\n8. Ultimate Career AI — Career Advisor',
+      projects: '1. Qaulium AI — AI platform\n2. EduVision-X — Education tech\n3. Code Vision — Dev tool\n4. Sentiment Analysis — NLP/ML\n5. CivicAI — AI Agent (Gemini API, Top 15/53)\n6. LaundryHub — QR-based Firebase app\n7. CricketConnect Pro — Sports\n8. Ultimate Career AI — Career Advisor',
       hackathons: '1. HackAura VITaura\'25 — CivicAI, Top 15 of 53 teams\n2. TechSprint \'25 (GDG) — LaundryHub, Round 2 qualifier\n3. Radiothon Hackathon (CSI VIT-AP)\n4. Gen AI Exchange 2025 (Google Cloud)',
       achievements: '1. 1st Place — Git & GitHub Open Source Challenge (GDG On Campus VIT-AP), Top Contributor with 30 PRs\n2. 2nd Place — ElectroQuest (IETE), ECE-focused technical event\n3. HackAura VITaura\'25 — Top 15 of 53 teams',
       education: 'VIT-AP University (2024-2028) — B.Tech CSE, AI & ML\nNarayana Junior College (2022-2024) — Intermediate MPC\nSri Chaitanya Techno School — 10th Standard',
