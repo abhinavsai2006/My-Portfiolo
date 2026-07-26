@@ -216,6 +216,10 @@
         card.style.setProperty('--my', y + '%');
       });
     });
+
+    if (window.attachCursorHovers) {
+      window.attachCursorHovers();
+    }
   }
 
   // Generate HTML for a Single Repo Card
@@ -233,7 +237,7 @@
       : '';
 
     return `
-      <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="repo-card">
+      <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="repo-card" data-cursor-label="View">
         <div>
           <div class="repo-card__header">
             <h3 class="repo-card__name">${escapeHTML(repo.name)}</h3>
@@ -343,12 +347,69 @@
         document.body.classList.remove('menu-open');
       });
     });
+  // Initialize Custom Smooth Cursor
+  function initCustomCursor() {
+    if (window.matchMedia('(hover: none)').matches) return;
+
+    const cursorEl = document.getElementById('cursor');
+    const dotEl = document.getElementById('cursor-dot');
+    if (!cursorEl || !dotEl) return;
+
+    const labelEl = cursorEl.querySelector('.cursor__label');
+
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+
+    document.addEventListener('mousemove', function (e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dotEl.style.transform = 'translate(' + mouseX + 'px, ' + mouseY + 'px) translate(-50%, -50%)';
+    });
+
+    function renderCursor() {
+      cursorX += (mouseX - cursorX) * 0.15;
+      cursorY += (mouseY - cursorY) * 0.15;
+      cursorEl.style.transform = 'translate(' + cursorX + 'px, ' + cursorY + 'px)';
+      requestAnimationFrame(renderCursor);
+    }
+    renderCursor();
+
+    window.attachCursorHovers = function () {
+      const interactiveEls = document.querySelectorAll(
+        'a, button, [data-magnetic], .repo-card, .article-card, input, select'
+      );
+
+      interactiveEls.forEach(function (el) {
+        if (el.dataset.cursorBound) return;
+        el.dataset.cursorBound = 'true';
+
+        el.addEventListener('mouseenter', function () {
+          const label = el.getAttribute('data-cursor-label');
+          if (label) {
+            cursorEl.classList.add('has-label');
+            cursorEl.classList.remove('is-hovering');
+            if (labelEl) labelEl.textContent = label;
+          } else {
+            cursorEl.classList.add('is-hovering');
+            cursorEl.classList.remove('has-label');
+          }
+        });
+
+        el.addEventListener('mouseleave', function () {
+          cursorEl.classList.remove('is-hovering', 'has-label');
+          if (labelEl) labelEl.textContent = '';
+        });
+      });
+    };
+
+    window.attachCursorHovers();
   }
 
   // Initialize Everything on DOM Content Loaded
   document.addEventListener('DOMContentLoaded', function () {
     initMobileMenu();
     initControls();
+    initCustomCursor();
     fetchRepositories();
   });
 })();

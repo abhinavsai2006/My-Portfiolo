@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights &amp; Blog — Abhinav Sai | AI &amp; Software Engineering</title>
+  <meta name="description" content="Technical articles, learnings, and insights on Generative AI, machine learning, Hedera Hashgraph Web3, and hackathon engineering by Abhinav Sai.">
+  <meta name="theme-color" content="#0c0c0c">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Insights & Blog — Abhinav Sai | AI & Software Engineering">
+  <meta property="og:description" content="Technical articles and learnings on Generative AI, Web3, and Software Engineering.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%230c0c0c%22 width=%22100%22 height=%22100%22 rx=%2220%22/><text x=%2250%22 y=%2268%22 font-family=%22sans-serif%22 font-size=%2240%22 font-weight=%22700%22 fill=%22%23C8A97E%22 text-anchor=%22middle%22>AS</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles (Standalone Blog CSS) -->
+  <link rel="stylesheet" href="css/blog.css">
+  <link rel="stylesheet" href="../css/blog.css">
+</head>
+<body>
+  <!-- ==================== CUSTOM CURSOR ==================== -->
+  <div class="cursor" id="cursor">
+    <div class="cursor__circle"></div>
+    <span class="cursor__label"></span>
+  </div>
+  <div class="cursor-dot" id="cursor-dot"></div>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="https://abhinavsai.com/" class="nav__logo">
+        <span>AS</span>
+      </a>
+      <nav class="nav__links" aria-label="Main navigation">
+        <a href="https://abhinavsai.com/#about" class="nav__link">About</a>
+        <a href="https://abhinavsai.com/#work" class="nav__link">Featured</a>
+        <a href="https://abhinavsai.com/#services" class="nav__link">Skills</a>
+        <a href="https://abhinavsai.com/#experience" class="nav__link">Journey</a>
+        <a href="https://abhinavsai.com/projects" class="nav__link">All Projects</a>
+        <a href="index.html" class="nav__link is-active" style="color: var(--c-accent);">Blog</a>
+        <a href="https://abhinavsai.com/#contact" class="nav__link nav__link--cta">Let's Connect</a>
+      </nav>
+      <button class="nav__hamburger" id="nav-hamburger" aria-label="Toggle navigation menu">
+        <div class="nav__hamburger-lines">
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== MOBILE MENU OVERLAY ==================== -->
+  <div class="menu-overlay" id="menu-overlay">
+    <nav class="menu-overlay__nav" aria-label="Mobile navigation">
+      <a href="https://abhinavsai.com/#about" class="menu-overlay__link" data-index="01"><span>About</span></a>
+      <a href="https://abhinavsai.com/#work" class="menu-overlay__link" data-index="02"><span>Featured</span></a>
+      <a href="https://abhinavsai.com/#services" class="menu-overlay__link" data-index="03"><span>Skills</span></a>
+      <a href="https://abhinavsai.com/#experience" class="menu-overlay__link" data-index="04"><span>Journey</span></a>
+      <a href="https://abhinavsai.com/projects" class="menu-overlay__link" data-index="05"><span>Projects</span></a>
+      <a href="index.html" class="menu-overlay__link" data-index="06"><span style="color: var(--c-accent);">Blog</span></a>
+      <a href="https://abhinavsai.com/#contact" class="menu-overlay__link" data-index="07"><span>Contact</span></a>
+    </nav>
+    <div class="menu-overlay__footer">
+      <div class="menu-overlay__footer-socials">
+        <a href="https://github.com/abhinavsai2006" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/madapatiabhinav-sai" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <span class="menu-overlay__footer-email">hello@abhinavsai.com</span>
+    </div>
+  </div>
+
+  <main>
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="blog-hero">
+      <div class="container">
+        <div class="blog-hero__header">
+          <span class="blog-hero__tag">// TECHNICAL INSIGHTS &amp; WRITING</span>
+          <h1 class="blog-hero__title">Thoughts &amp; Learnings</h1>
+          <p class="blog-hero__subtitle">
+            Essays, architecture breakdowns, certification reflections, and practical engineering lessons from building AI agents, Web3 systems, and software products.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ARTICLES SECTION ==================== -->
+    <section style="padding: var(--space-lg) 0 var(--section-py);">
+      <div class="container">
+
+        <!-- Toolbar: Search & Category Filters -->
+        <div class="blog-toolbar">
+          <div class="blog-search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="blog-search-input" placeholder="Search articles by keyword or tag..." aria-label="Search articles">
+          </div>
+
+          <div class="blog-filters" id="blog-filters">
+            <button class="filter-pill is-active" data-category="all">All Topics</button>
+            <button class="filter-pill" data-category="ai engineering">AI Engineering</button>
+            <button class="filter-pill" data-category="hackathons & build">Hackathons &amp; Build</button>
+            <button class="filter-pill" data-category="web3 / blockchain">Web3 / Blockchain</button>
+          </div>
+        </div>
+
+        <!-- Articles Grid -->
+        <div class="blog-grid" id="blog-grid">
+          <!-- Dynamically rendered by JS -->
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== ARTICLE MODAL VIEWER ==================== -->
+  <div class="article-modal" id="article-modal" role="dialog" aria-modal="true">
+    <div class="article-modal__content">
+      <button class="article-modal__close" id="modal-close" aria-label="Close article">&times;</button>
+      <div class="article-modal__body" id="modal-body">
+        <!-- Content injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <span class="footer__copy">&copy; 2026 Abhinav Sai. All rights reserved.</span>
+        <a href="https://www.linkedin.com/in/madapati-abhinav-sai/" target="_blank" rel="noopener noreferrer" class="creds__linkedin">
+          LinkedIn Articles ↗
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/blog.js"></script>
+  <script src="../js/blog.js"></script>
+</body>
+</html>

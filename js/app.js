@@ -962,8 +962,8 @@
       help: 'Available commands: <strong>about</strong>, <strong>skills</strong>, <strong>projects</strong>, <strong>hackathons</strong>, <strong>achievements</strong>, <strong>education</strong>, <strong>contact</strong>, <strong>clear</strong>',
       about: 'Abhinav Sai Madapati — B.Tech CSE student at VIT-AP University, specializing in AI & ML. Top Contributor (1st place) in the GDG Git & GitHub Open Source Challenge with 30 PRs, 2nd place in ElectroQuest (IETE), Oracle certified, and GDG AI/ML & Data Analytics team member (2025-2026).',
       skills: 'Python, Java, TypeScript, JavaScript, React, Next.js, TensorFlow, Google Cloud, Firebase, Gemini API, Node.js, Three.js, GSAP, FastAPI, Docker, Git',
-      projects: '1. Qaulium AI — AI platform\n2. EduVision-X — Education tech\n3. Code Vision — Dev tool\n4. Sentiment Analysis — NLP/ML\n5. CivicAI — AI Agent (Gemini API, Top 15/53)\n6. LaundryHub — QR-based Firebase app\n7. CricketConnect Pro — Sports\n8. Ultimate Career AI — Career Advisor',
-      hackathons: '1. HackAura VITaura\'25 — CivicAI, Top 15 of 53 teams\n2. TechSprint \'25 (GDG) — LaundryHub, Round 2 qualifier\n3. Radiothon Hackathon (CSI VIT-AP)\n4. Gen AI Exchange 2025 (Google Cloud)',
+      projects: '1. Qualium AI — AI platform & agentic pipeline\n2. EduVision-X — Education tech\n3. Code Vision — Dev tool\n4. Sentiment Analysis — NLP/ML\n5. LaundryHub — QR-based Firebase app\n6. CricketConnect Pro — Sports\n7. Ultimate Career AI — Career Advisor',
+      hackathons: '1. HackAura VITaura\'25 — Qualium AI, Top 15 of 53 teams\n2. TechSprint \'25 (GDG) — LaundryHub, Round 2 qualifier\n3. Radiothon Hackathon (CSI VIT-AP)',
       achievements: '1. 1st Place — Git & GitHub Open Source Challenge (GDG On Campus VIT-AP), Top Contributor with 30 PRs\n2. 2nd Place — ElectroQuest (IETE), ECE-focused technical event\n3. HackAura VITaura\'25 — Top 15 of 53 teams',
       education: 'VIT-AP University (2024-2028) — B.Tech CSE, AI & ML\nNarayana Junior College (2022-2024) — Intermediate MPC\nSri Chaitanya Techno School — 10th Standard',
       contact: 'Email: abhinavsaimadapati@gmail.com\nGitHub: github.com/abhinavsai2006\nLinkedIn: linkedin.com/in/madapati-abhinav-sai',
@@ -1069,11 +1069,11 @@
     }
 
     var knowledge = {
-      projects: 'Abhinav has built 50+ projects including: Quallium AI (AI platform), EduVision-X (education tech), CivicAI (AI agent for city issue management using Gemini API — Top 15/53 at HackAura), Code Vision (developer tool), Sentiment Analysis (NLP/ML), LaundryHub (QR-based Firebase platform — TechSprint Round 2), CricketConnect Pro (sports platform), and Ultimate Career AI.',
+      projects: 'Abhinav has built 50+ projects including: Qualium AI (AI platform & agentic pipeline — Top 15/53 at HackAura), EduVision-X (education tech), Code Vision (developer tool), Sentiment Analysis (NLP/ML), LaundryHub (QR-based Firebase platform — TechSprint Round 2), CricketConnect Pro (sports platform), and Ultimate Career AI.',
       skills: 'His core skills include Python, Java, TypeScript, JavaScript, React, Next.js, TensorFlow, Google Cloud, Firebase, Gemini API, Node.js, Three.js, GSAP, and FastAPI. He specializes in AI & Machine Learning.',
       education: 'He\'s pursuing B.Tech CSE with AI & ML specialization at VIT-AP University (2024-2028). Previously at Narayana Junior College (MPC) and Sri Chaitanya Techno School.',
-      experience: 'He\'s an AI/ML & Data Analytics Team Member at Google Developer Groups VIT-AP (2025-2026). He was recognized as 1st place Top Contributor in the GDG Git & GitHub Open Source Challenge with 30 PRs, secured 2nd place in ElectroQuest (IETE), and placed Top 15/53 at HackAura building CivicAI.',
-      hackathon: 'Abhinav competed in 4 hackathons: HackAura VITaura\'25 (CivicAI, Top 15/53), TechSprint \'25 (LaundryHub, Round 2), Radiothon (CSI VIT-AP), and Gen AI Exchange 2025 (Google Cloud). His first hackathon was HackAura where he built an AI agentic pipeline.',
+      experience: 'He\'s an AI/ML & Data Analytics Team Member at Google Developer Groups VIT-AP (2025-2026). He was recognized as 1st place Top Contributor in the GDG Git & GitHub Open Source Challenge with 30 PRs, secured 2nd place in ElectroQuest (IETE), and placed Top 15/53 at HackAura building Qualium AI.',
+      hackathon: 'Abhinav competed in 3 hackathons: HackAura VITaura\'25 (Qualium AI, Top 15/53), TechSprint \'25 (LaundryHub, Round 2), and Radiothon (CSI VIT-AP).',
       achievements: 'Recent highlights: 1st place in the Git & GitHub Open Source Challenge by GDG On Campus VIT-AP (Top Contributor with 30 PRs), 2nd place in ElectroQuest conducted by IETE, and Top 15/53 at HackAura VITaura\'25.',
       electroquest: 'Abhinav secured 2nd place in ElectroQuest, an ECE-focused technical event conducted by IETE.',
       opensource: 'He was recognized as the Top Contributor (1st place) in the Git & GitHub Open Source Challenge by GDG On Campus VIT-AP with 30 pull requests.',

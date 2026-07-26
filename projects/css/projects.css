@@ -49,6 +49,81 @@
 }
 
 /* =========================================
+   CUSTOM CURSOR
+   ========================================= */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 10000;
+  will-change: transform;
+}
+
+.cursor__circle {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.45s var(--ease-out-expo),
+    height 0.45s var(--ease-out-expo),
+    background 0.35s ease,
+    border-color 0.35s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cursor__label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--f-accent);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-bg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.cursor.is-hovering .cursor__circle {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.cursor.has-label .cursor__circle {
+  width: 90px;
+  height: 90px;
+  background: var(--c-accent);
+  border-color: transparent;
+}
+
+.cursor.has-label .cursor__label {
+  opacity: 1;
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  background: var(--c-white);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10001;
+}
+
+/* =========================================
    RESET & BASE STYLES
    ========================================= */
 *, *::before, *::after {
