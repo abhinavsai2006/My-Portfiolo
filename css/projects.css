@@ -808,6 +808,20 @@ a {
   margin-bottom: var(--space-md);
 }
 
+.projects-notice {
+  grid-column: 1 / -1;
+  background: rgba(200, 169, 126, 0.08);
+  border: 1px solid rgba(200, 169, 126, 0.25);
+  color: var(--c-accent, #C8A97E);
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: var(--fs-small, 0.875rem);
+  margin-bottom: var(--space-md, 24px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 /* =========================================
    FOOTER
    ========================================= */

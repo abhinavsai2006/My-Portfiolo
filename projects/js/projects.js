@@ -2,6 +2,8 @@
    PROJECTS.JS — Automatic GitHub Repository Sync Engine
    Fetches public repos from GitHub REST API, filters out forks,
    provides search/filtering/sorting, and renders responsive cards.
+   Includes LocalStorage caching and static fallback data to withstand
+   GitHub API 403 Rate Limits and network outages.
    ========================================================================== */
 
 (function () {
@@ -9,6 +11,7 @@
 
   const GITHUB_USERNAME = 'abhinavsai2006';
   const API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`;
+  const CACHE_KEY = 'github_repos_cache';
 
   // Language color map matching GitHub's official colors
   const LANG_COLORS = {
@@ -25,6 +28,214 @@
     Jupyter: '#DA5B0B',
     Default: '#C8A97E',
   };
+
+  // Static Fallback Repositories for GitHub API Rate Limits (HTTP 403) or offline status
+  const FALLBACK_REPOS = [
+    {
+      name: 'INSURECORE',
+      description: 'AI-powered core insurance platform for modern policy management and automated claims processing.',
+      html_url: 'https://github.com/abhinavsai2006/INSURECORE',
+      stargazers_count: 0,
+      forks_count: 0,
+      language: 'TypeScript',
+      updated_at: '2026-07-22T20:13:41Z',
+      topics: ['ai', 'insurance', 'typescript', 'fullstack'],
+      fork: false,
+      archived: false,
+    },
+    {
+      name: 'DeepCoalSeg',
+      description: 'Deep learning model for coal petrography image segmentation and microscopic feature analysis.',
+      html_url: 'https://github.com/abhinavsai2006/DeepCoalSeg',
+      stargazers_count: 0,
+      forks_count: 0,
+      language: 'Python',
+      updated_at: '2026-07-25T19:16:06Z',
+      topics: ['deep-learning', 'computer-vision', 'python', 'segmentation'],
+      fork: false,
+      archived: false,
+    },
+    {
+      name: 'Syntactic-Intelligence',
+      description: 'Advanced NLP and syntactic structure analysis engine for automated code & text parsing.',
+      html_url: 'https://github.com/abhinavsai2006/Syntactic-Intelligence',
+      stargazers_count: 0,
+      forks_count: 0,
+      language: 'Python',
+      updated_at: '2026-07-19T17:41:20Z',
+      topics: ['nlp', 'python', 'ai', 'machine-learning'],
+      fork: false,
+      archived: false,
+    },
+    {
+      name: 'AI-Code-reviewer',
+      description: 'AI-assisted automated code review application providing instant feedback and quality improvements.',
+      html_url: 'https://github.com/abhinavsai2006/AI-Code-reviewer',
+      stargazers_count: 0,
+      forks_count: 0,
+      language: 'HTML',
+      updated_at: '2026-07-17T17:37:16Z',
+      topics: ['ai', 'code-review', 'javascript', 'developer-tools'],
+      fork: false,
+      archived: false,
+    },
+    {
+      name: 'SmartERP',
+      description: 'Smart Enterprise Resource Planning web application designed for resource management and analytics.',
+      html_url: 'https://github.com/abhinavsai2006/SmartERP',
+      stargazers_count: 0,
+      forks_count: 0,
+      language: 'TypeScript',
+      updated_at: '2026-07-04T08:11:59Z',
+      topics: ['typescript', 'erp', 'web-app'],
+      fork: false,
+      archived: false,
+    },
+    {
+      name: 'SignFlow',
+      description: 'Sign language recognition and real-time gesture translation tool powered by computer vision.',
+      html_url: 'https://github.com/abhinavsai2006/SignFlow',
+      stargazers_count: 0,
+      forks_count: 0,
+      language: 'Python',
+      updated_at: '2026-06-19T13:17:25Z',
+      topics: ['computer-vision', 'sign-language', 'python', 'ai'],
+      fork: false,
+      archived: false,
+    },
+    {
+      name: 'fitpulse',
+      description: 'Fitness tracking and health analytics application with activity monitoring dashboards.',
+      html_url: 'https://github.com/abhinavsai2006/fitpulse',
+      stargazers_count: 0,
+      forks_count: 0,
+      language: 'JavaScript',
+      updated_at: '2026-04-14T18:27:39Z',
+      topics: ['health', 'javascript', 'web-app'],
+      fork: false,
+      archived: false,
+    },
+    {
+      name: 'Civic-AI',
+      description: 'AI-driven civic engagement platform for community problem reporting and resolution tracking.',
+      html_url: 'https://github.com/abhinavsai2006/Civic-AI',
+      stargazers_count: 0,
+      forks_count: 0,
+      language: 'CSS',
+      updated_at: '2026-04-09T06:23:18Z',
+      topics: ['civic-tech', 'ai', 'web'],
+      fork: false,
+      archived: false,
+    },
+    {
+      name: 'LaundryHub',
+      description: 'On-demand laundry booking and service tracking web platform with real-time status updates.',
+      html_url: 'https://github.com/abhinavsai2006/LaundryHub',
+      stargazers_count: 0,
+      forks_count: 0,
+      language: 'TypeScript',
+      updated_at: '2026-03-22T15:14:36Z',
+      topics: ['typescript', 'web-app', 'services'],
+      fork: false,
+      archived: false,
+    },
+    {
+      name: 'Quallium-Ai',
+      description: 'AI-based content generation and document synthesis engine for automated workflow productivity.',
+      html_url: 'https://github.com/abhinavsai2006/Quallium-Ai',
+      stargazers_count: 0,
+      forks_count: 0,
+      language: 'CSS',
+      updated_at: '2026-03-06T18:40:14Z',
+      topics: ['ai', 'nlp', 'llm'],
+      fork: false,
+      archived: false,
+    },
+    {
+      name: 'EduVision-X',
+      description: 'AI-powered personalized education platform for adaptive learning and intelligent tutoring.',
+      html_url: 'https://github.com/abhinavsai2006/EduVision-X',
+      stargazers_count: 0,
+      forks_count: 1,
+      language: 'TypeScript',
+      updated_at: '2026-03-05T15:49:00Z',
+      topics: ['education', 'ai', 'typescript'],
+      fork: false,
+      archived: false,
+    },
+    {
+      name: 'Code-vision',
+      description: 'Code analysis, visual AST exploration, and automated refactoring recommendations.',
+      html_url: 'https://github.com/abhinavsai2006/Code-vision',
+      stargazers_count: 0,
+      forks_count: 0,
+      language: 'JavaScript',
+      updated_at: '2026-03-05T16:15:17Z',
+      topics: ['developer-tools', 'javascript', 'ai'],
+      fork: false,
+      archived: false,
+    },
+    {
+      name: 'Sentiment-Analysis',
+      description: 'NLP-based sentiment classification model with microservices API for real-time text analysis.',
+      html_url: 'https://github.com/abhinavsai2006/Sentiment-Analysis',
+      stargazers_count: 0,
+      forks_count: 0,
+      language: 'Python',
+      updated_at: '2026-02-20T16:08:53Z',
+      topics: ['python', 'nlp', 'machine-learning'],
+      fork: false,
+      archived: false,
+    },
+    {
+      name: 'Legal-Guard',
+      description: 'AI legal document analyzer and risk mitigation assistant for contract review.',
+      html_url: 'https://github.com/abhinavsai2006/Legal-Guard',
+      stargazers_count: 0,
+      forks_count: 0,
+      language: 'Python',
+      updated_at: '2026-02-15T16:29:29Z',
+      topics: ['python', 'legal-tech', 'ai'],
+      fork: false,
+      archived: false,
+    },
+    {
+      name: 'Maya-AI',
+      description: 'Voice-based human-like personal AI assistant with real-time speech and modular architecture.',
+      html_url: 'https://github.com/abhinavsai2006/Maya-AI',
+      stargazers_count: 0,
+      forks_count: 0,
+      language: 'Python',
+      updated_at: '2026-01-17T20:58:27Z',
+      topics: ['voice-ai', 'python', 'assistant'],
+      fork: false,
+      archived: false,
+    },
+    {
+      name: 'ultimate-career-ai',
+      description: 'AI career planning, resume optimization, and skill guidance platform.',
+      html_url: 'https://github.com/abhinavsai2006/ultimate-career-ai',
+      stargazers_count: 0,
+      forks_count: 0,
+      language: 'JavaScript',
+      updated_at: '2025-09-17T14:52:29Z',
+      topics: ['career', 'ai', 'javascript'],
+      fork: false,
+      archived: false,
+    },
+    {
+      name: 'My-Portfiolo',
+      description: 'Personal portfolio website featuring dark aesthetic, dynamic project loading, and interactive UI.',
+      html_url: 'https://github.com/abhinavsai2006/My-Portfiolo',
+      stargazers_count: 0,
+      forks_count: 0,
+      language: 'CSS',
+      updated_at: '2026-07-26T14:56:24Z',
+      topics: ['portfolio', 'css', 'javascript'],
+      fork: false,
+      archived: false,
+    },
+  ];
 
   let allRepos = [];
   let filteredRepos = [];
@@ -76,9 +287,45 @@
       .join('');
   }
 
-  // Fetch Repositories from GitHub API
+  // Display Notice Banner (for rate-limit fallback or cached state)
+  function showNotice(message) {
+    if (!gridEl || !gridEl.parentNode) return;
+    let noticeEl = document.getElementById('projects-notice');
+    if (!noticeEl) {
+      noticeEl = document.createElement('div');
+      noticeEl.id = 'projects-notice';
+      noticeEl.className = 'projects-notice';
+      gridEl.parentNode.insertBefore(noticeEl, gridEl);
+    }
+    noticeEl.innerHTML = `<span>ℹ️ ${escapeHTML(message)}</span>`;
+    noticeEl.style.display = 'flex';
+  }
+
+  // Remove Notice Banner
+  function removeNotice() {
+    const noticeEl = document.getElementById('projects-notice');
+    if (noticeEl) {
+      noticeEl.style.display = 'none';
+    }
+  }
+
+  // Fetch Repositories from GitHub API with Caching and Fallback
   async function fetchRepositories() {
     renderSkeletons();
+
+    // Check LocalStorage Cache
+    let cachedRepos = null;
+    try {
+      const cachedStr = localStorage.getItem(CACHE_KEY);
+      if (cachedStr) {
+        const parsed = JSON.parse(cachedStr);
+        if (parsed && Array.isArray(parsed.data) && parsed.data.length > 0) {
+          cachedRepos = parsed.data;
+        }
+      }
+    } catch (e) {
+      console.warn('LocalStorage cache read error:', e);
+    }
 
     try {
       const response = await fetch(API_URL, {
@@ -96,18 +343,45 @@
       // Filter out forks & draft repositories
       allRepos = data.filter((repo) => !repo.fork && !repo.archived);
 
-      // Populate Language Filters
-      buildLanguageFilters(allRepos);
+      // Save to LocalStorage cache
+      try {
+        localStorage.setItem(
+          CACHE_KEY,
+          JSON.stringify({ timestamp: Date.now(), data: allRepos })
+        );
+      } catch (e) {
+        // Ignore quota / private browsing errors
+      }
 
-      // Calculate & Render Stats
-      updateStats(allRepos);
-
-      // Filter & Render Cards
-      applyFiltersAndSort();
+      removeNotice();
+      processAndRenderRepos(allRepos);
     } catch (err) {
-      console.error('Failed to fetch GitHub projects:', err);
-      renderError(err.message);
+      console.warn('GitHub API Fetch fallback triggered:', err.message);
+
+      if (cachedRepos && cachedRepos.length > 0) {
+        allRepos = cachedRepos;
+        showNotice('Displaying cached projects (GitHub API rate limit reached).');
+        processAndRenderRepos(allRepos);
+      } else if (FALLBACK_REPOS && FALLBACK_REPOS.length > 0) {
+        allRepos = FALLBACK_REPOS;
+        showNotice('Displaying featured projects (GitHub API rate limit reached).');
+        processAndRenderRepos(allRepos);
+      } else {
+        renderError(err.message);
+      }
     }
+  }
+
+  // Populate UI elements after fetching / falling back to repos
+  function processAndRenderRepos(repos) {
+    // Populate Language Filters
+    buildLanguageFilters(repos);
+
+    // Calculate & Render Stats
+    updateStats(repos);
+
+    // Filter & Render Cards
+    applyFiltersAndSort();
   }
 
   // Calculate & Display Stats
@@ -135,48 +409,56 @@
     // Sort languages by count descending
     const sortedLangs = Object.keys(langCounts).sort((a, b) => langCounts[b] - langCounts[a]);
 
-    let html = `<button class="filter-pill is-active" data-lang="all">All (${repos.length})</button>`;
-    sortedLangs.forEach((lang) => {
-      html += `<button class="filter-pill" data-lang="${lang.toLowerCase()}">${lang} (${langCounts[lang]})</button>`;
-    });
+    const buttonsHTML = `
+      <button class="filter-btn active" data-lang="all">
+        All (${repos.length})
+      </button>
+      ${sortedLangs
+        .map(
+          (lang) => `
+        <button class="filter-btn" data-lang="${lang}">
+          ${lang} (${langCounts[lang]})
+        </button>
+      `
+        )
+        .join('')}
+    `;
 
-    filtersContainer.innerHTML = html;
+    filtersContainer.innerHTML = buttonsHTML;
 
-    // Filter pill click listeners
-    filtersContainer.querySelectorAll('.filter-pill').forEach((pill) => {
-      pill.addEventListener('click', function () {
-        filtersContainer.querySelectorAll('.filter-pill').forEach((p) => p.classList.remove('is-active'));
-        this.classList.add('is-active');
-        currentLanguageFilter = this.getAttribute('data-lang');
+    // Attach click listeners to filter buttons
+    filtersContainer.querySelectorAll('.filter-btn').forEach((btn) => {
+      btn.addEventListener('click', function () {
+        filtersContainer.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentLanguageFilter = btn.dataset.lang;
         applyFiltersAndSort();
       });
     });
   }
 
-  // Apply Search, Filter, and Sort
+  // Apply Search, Language Filters, and Sorting
   function applyFiltersAndSort() {
     let result = [...allRepos];
 
-    // 1. Language Filter
-    if (currentLanguageFilter !== 'all') {
+    // Search query filter
+    if (searchQuery.trim() !== '') {
+      const q = searchQuery.toLowerCase().trim();
       result = result.filter(
-        (repo) => repo.language && repo.language.toLowerCase() === currentLanguageFilter
+        (repo) =>
+          repo.name.toLowerCase().includes(q) ||
+          (repo.description && repo.description.toLowerCase().includes(q)) ||
+          (repo.language && repo.language.toLowerCase().includes(q)) ||
+          (repo.topics && repo.topics.some((t) => t.toLowerCase().includes(q)))
       );
     }
 
-    // 2. Search Query
-    if (searchQuery.trim() !== '') {
-      const q = searchQuery.toLowerCase().trim();
-      result = result.filter((repo) => {
-        const nameMatch = repo.name.toLowerCase().includes(q);
-        const descMatch = repo.description && repo.description.toLowerCase().includes(q);
-        const langMatch = repo.language && repo.language.toLowerCase().includes(q);
-        const topicMatch = repo.topics && repo.topics.some((t) => t.toLowerCase().includes(q));
-        return nameMatch || descMatch || langMatch || topicMatch;
-      });
+    // Language filter
+    if (currentLanguageFilter !== 'all') {
+      result = result.filter((repo) => repo.language === currentLanguageFilter);
     }
 
-    // 3. Sorting
+    // Sort repos
     if (currentSort === 'updated') {
       result.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
     } else if (currentSort === 'stars') {
