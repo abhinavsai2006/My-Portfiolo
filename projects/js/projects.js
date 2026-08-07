@@ -360,11 +360,11 @@
 
       if (cachedRepos && cachedRepos.length > 0) {
         allRepos = cachedRepos;
-        showNotice('Displaying cached projects (GitHub API rate limit reached).');
+        removeNotice();
         processAndRenderRepos(allRepos);
       } else if (FALLBACK_REPOS && FALLBACK_REPOS.length > 0) {
         allRepos = FALLBACK_REPOS;
-        showNotice('Displaying featured projects (GitHub API rate limit reached).');
+        removeNotice();
         processAndRenderRepos(allRepos);
       } else {
         renderError(err.message);
@@ -410,13 +410,13 @@
     const sortedLangs = Object.keys(langCounts).sort((a, b) => langCounts[b] - langCounts[a]);
 
     const buttonsHTML = `
-      <button class="filter-btn active" data-lang="all">
+      <button class="filter-btn filter-pill active is-active" data-lang="all">
         All (${repos.length})
       </button>
       ${sortedLangs
         .map(
           (lang) => `
-        <button class="filter-btn" data-lang="${lang}">
+        <button class="filter-btn filter-pill" data-lang="${lang}">
           ${lang} (${langCounts[lang]})
         </button>
       `
@@ -427,10 +427,14 @@
     filtersContainer.innerHTML = buttonsHTML;
 
     // Attach click listeners to filter buttons
-    filtersContainer.querySelectorAll('.filter-btn').forEach((btn) => {
+    filtersContainer.querySelectorAll('.filter-btn, .filter-pill').forEach((btn) => {
       btn.addEventListener('click', function () {
-        filtersContainer.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
+        filtersContainer.querySelectorAll('.filter-btn, .filter-pill').forEach((b) => {
+          b.classList.remove('active');
+          b.classList.remove('is-active');
+        });
         btn.classList.add('active');
+        btn.classList.add('is-active');
         currentLanguageFilter = btn.dataset.lang;
         applyFiltersAndSort();
       });
